@@ -12,19 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConferenceController extends AbstractController
 {
+
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function index(ConferenceRepository $conferenceRepository): Response
+    public function index(): Response
     {
-        $conferences = $conferenceRepository->findAll();
-        return $this->render('conference/index.html.twig', [
-            'conferences' => $conferences,
-        ]);
+        return $this->render('conference/index.html.twig');
     }
 
     /**
-     * @Route("/conference/{id}", name="conference")
+     * @Route("/conference/{slug}", name="conference")
      */
     public function show(Request $reqeust, Conference $conference, CommentRepository $commentRepository)
     {
